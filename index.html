@@ -87,12 +87,12 @@
         <!-- <select class="top-header-item">
             <option value="1"></option>
         </select> -->
-        <div class="top-header-item">和利时DCS 🔽</div>
+        <div class="top-header-item" id="top-header-item1">和利时DCS 主控制器</div>
         <div class="top-header-item">和利时DCS 🔽</div>
     </div>
 
     <div>
-        <iframe src="./和利时_主控制器单元1.drawio (1).html" frameborder="0" style="width: 100%; height: 500px"></iframe>
+        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: calc(100vh - 40px)"></iframe>
     </div>
 
     <!-- <select class="lb-select">
@@ -102,6 +102,13 @@
     <!-- <div class="top-header"></div> -->
 
     <script>
+        /**@type {}*/
+       var iframe1 =  document.getElementById('iframe1')
+
+// ./和利时_主控制器单元1.drawio (1).html
+        document.getElementById('top-header-item1').addEventListener('click',(e)=>{
+            iframe1.src = './和利时_主控制器单元1.drawio (1).html'
+        })
 
     </script>
 
