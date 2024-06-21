@@ -159,7 +159,7 @@
     </div>
 
     <div>
-        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: calc(100vh - 40px)"></iframe>
+        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: calc(100vh - 90px)"></iframe>
     </div>
 
     <!-- <select class="lb-select">
@@ -170,6 +170,10 @@
 
 
     <script>
+
+
+        var iframe1 = document.getElementById('iframe1')
+
         function initMenu1() {
             /**
                      * 
@@ -211,6 +215,10 @@
                         let div2 = document.createElement('div')
                         div2.className = 'children-header-item1'
                         div2.innerHTML = _ii.title
+
+                        div2.addEventListener('click',(ee)=>{
+                            iframe1.src = _ii.src1
+                        })
                         // div1.appendChild(div2)
                         div3.appendChild(div2)
                     })
@@ -247,7 +255,7 @@
 
 
         /**@type {}*/
-        var iframe1 = document.getElementById('iframe1')
+        
 
         // ./和利时_主控制器单元1.drawio (1).html
         document.getElementById('top-header-item1').addEventListener('click', (e) => {
