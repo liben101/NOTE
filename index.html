@@ -1,109 +1,282 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh">
 
-        <!-- ===== CSS ===== -->
-        <link rel="stylesheet" href="assets/css/styles.css">
-    
-        <!-- ===== BOX ICONS ===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-        <title>Responsive Login Form Sign In Sign Up</title>
-    </head>
-    <body>
-        <div class="login">
-            <div class="login__content">
-                <div class="login__img">
-                    <img src="assets/img/img-login.svg" alt="">
-                </div>
+    <script>
 
-                <div class="login__forms">
-                    <form action="" class="login__registre" id="login-in">
-                        <h1 class="login__title">请登录系统</h1>
-    
-                        <div class="login__box">
-                            <i class='bx bx-user login__icon'></i>
-                            <input type="text" placeholder="用户名" id="username1" class="login__input">
-                        </div>
-    
-                        <div class="login__box">
-                            <i class='bx bx-lock-alt login__icon'></i>
-                            <input type="password" placeholder="密码" id="pwd11" class="login__input">
-                        </div>
+        /**
+         * 密码验证：
+         * 
+        **/
+        
 
-                        <!-- <a href="#" class="login__forgot">Forgot password?</a> -->
+        
+    </script>
 
-                        <a href="#" id="loginb1" class="login__button">登 录</a>
+    <script>
 
-                        <!-- <div>
-                            <span class="login__account">Don't have an Account ?</span>
-                            <span class="login__signin" id="sign-up">Sign Up</span>
-                        </div> -->
-                    </form>
+        var ACTIVE_TOP_HEADER = null
 
-                    <form action="" class="login__create none" id="login-up">
-                        <h1 class="login__title">Create Account</h1>
-    
-                        <div class="login__box">
-                            <i class='bx bx-user login__icon'></i>
-                            <input type="text" placeholder="Username" class="login__input">
-                        </div>
-    
-                        <div class="login__box">
-                            <i class='bx bx-at login__icon'></i>
-                            <input type="text" placeholder="Email" class="login__input">
-                        </div>
+    </script>
 
-                        <div class="login__box">
-                            <i class='bx bx-lock-alt login__icon'></i>
-                            <input type="password" placeholder="Password" class="login__input">
-                        </div>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
 
-                        <a href="#" class="login__button">Sign Up</a>
+    <style>
+        .top-header {
+            /* height: 30px; */
+            /* background: rgb(4, 119, 193); */
+            background: linear-gradient(90deg, rgb(53, 109, 231) 23%, rgb(76, 124, 230) 42%, rgb(62, 159, 223) 62%, rgb(159, 229, 231) 100%);
+            box-shadow: 0 5px 10px -5px rgb(68, 66, 66);
 
-                        <div>
-                            <span class="login__account">Already have an Account ?</span>
-                            <span class="login__signup" id="sign-in">Sign In</span>
-                        </div>
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
 
-                        <div class="login__social">
-                            <a href="#" class="login__social-icon"><i class='bx bxl-facebook' ></i></a>
-                            <a href="#" class="login__social-icon"><i class='bx bxl-twitter' ></i></a>
-                            <a href="#" class="login__social-icon"><i class='bx bxl-google' ></i></a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+            user-select: none;
+        }
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
+        .top-header-item {
+            font-size: 16px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            appearance: none;
+            background: transparent;
+            margin-left: 10px;
+            padding: 4px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
 
-        <script>
-            let username1 = document.getElementById('username1')
-            let pwd11 = document.getElementById('pwd11')
-            let loginb1 = document.getElementById('loginb1')
+        .top-header-item.active {
+            /* border-radius: 10px; */
+            background-color: rgb(99, 150, 227);
+            color: black;
+        }
 
-            loginb1.addEventListener('click',(e)=>{
-                let u1 = username1.value ? username1.value.trim() : username1.value
-                let p1 = pwd11.value ? pwd11.value.trim() : pwd11.value
-                
-                if(!u1 || !p1) {
-                    alert('账号或密码为空')
-                    return
-                }
+        .top-header-item:hover {
+            background-color: rgb(183, 204, 236);
+            color: black;
+        }
 
-                if(u1 === 'lb' && p1 === 'lb') {
-                    window.location.href = '/index2.html'
-                }else {
-                    alert('账号或密码错误')
-                    return
-                }
+
+
+        .children-header {
+            height: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid black;
+            display: flex;
+        }
+
+        .children-header-item1{
+            margin-right: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 
+        .navbar-brand{
+            color: white;
+        }
+
+        .nav-link{
+            color: white;
+        }
+
+        .nav-link.active {
+            color: white;
+        }
+
+        .nav-link.show {
+            color: white;
+        } */
+
+
+        .lb-select {
+            appearance: none;
+            /* border-radius: 4px;
+            height: 2.2em;
+            padding: 0 24px 0 8px;
+            font-family: inherit;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAASFBMVEUAAAD////Nzc3Nzc3V1dXNzc3MzMzMzMzMzMzNzc3Ozs7j4+PMzMzMzMzMzMzPz8/MzMzNzc3Ozs7Ozs7MzMzNzc3Nzc3Nzc1mbvnCAAAAGHRSTlMAAymOBrtVs9RlPgnPltxPlWwvRJzBt+CSuXutAAAAM0lEQVR4nGMYBbgALycjiGIUZEaTEBLl4WJgEOZgZcLQwybOLsbHj800bhEBFqo7cfACACvdARau8cpxAAAAAElFTkSuQmCC') no-repeat right center; */
+        }
+
+        iframe {
+            border: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+ 
+
+
+    <script>
+        const MENUS_1 = [
+            {
+                icon: ``,
+                title: '和利时DCS',
+                children: [
+                    {
+                        icon: ``,
+                        title: '主控制器',
+                        src1: './和利时_主控制器单元1.drawio.html'
+                    }
+                ]
+            }, {
+                icon: ``,
+                title: 'MES相关',
+                children: [
+                    {
+                        icon: ``,
+                        title: 'MES上下游',
+                        src1: './MES上下游1.drawio.html'
+                    },
+                    {
+                        icon: ``,
+                        title: 'SQL相关',
+                        src1: './SQL相关.drawio.html'
+                    }
+                ]
+            },
+        ]
+    </script>
+
+
+    <div class="top-header" id="top-header-1">
+        <!-- <select class="top-header-item">
+            <option value="1"></option>
+        </select> -->
+        <!-- <div class="top-header-item" id="top-header-item1">和利时DCS 主控制器</div> -->
+        <!-- <div class="top-header-item">和利时DCS 🔽</div> -->
+    </div>
+
+    <div class="children-header" id="children-header-1">
+        <!-- <div class="top-header-item-2" id="top-header-item1">和利时DCS 主控制器</div> -->
+        <!-- <div class="top-header-item-2">和利时DCS 🔽</div> -->
+    </div>
+
+    <div>
+        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: calc(100vh - 90px)"></iframe>
+    </div>
+
+    <!-- <select class="lb-select">
+        <option value="流程图">流程图</option>
+        <option value="CFC编程">CFC编程</option>
+    </select> -->
+    <!-- <div class="top-header"></div> -->
+
+
+    <script>
+
+
+        var iframe1 = document.getElementById('iframe1')
+
+        function initMenu1() {
+            /**
+                     * 
+                     * 初始化第一层menu
+                     * 
+                     * **/
+
+            let topheader1 = document.getElementById('top-header-1')
+
+            // let menu1html = ``
+            MENUS_1.forEach(item => {
+                // menu1html += `<div class="top-header-item">${item.title} 🔽</div>`
+
+
+                let div1 = document.createElement('div')
+                div1.className = 'top-header-item'
+                div1.innerHTML = `${item.title} 🔽`
+
+
+                // ------------------------------------------------
+
+                let div3 = document.getElementById('children-header-1')
+
+
+                let _chil = item.children
+
+                div1.addEventListener('click', (_e) => {
+
+                    if(ACTIVE_TOP_HEADER) {
+                        ACTIVE_TOP_HEADER.classList.remove('active')
+                    }
+
+                    ACTIVE_TOP_HEADER = div1
+                    div1.classList.add('active')
+
+
+                    div3.innerHTML = ''
+                    _chil.forEach(_ii => {
+                        let div2 = document.createElement('div')
+                        div2.className = 'children-header-item1'
+                        div2.innerHTML = _ii.title
+
+                        div2.addEventListener('click',(ee)=>{
+                            iframe1.src = _ii.src1
+                        })
+                        // div1.appendChild(div2)
+                        div3.appendChild(div2)
+                    })
+                })
+
+
+
+                topheader1.appendChild(div1)
+
+
             })
 
+            // topheader1.innerHTML = menu1html
 
-        </script>
-    </body>
+            // -----------------------------------
+
+            // let topHeaderItems = document.querySelectorAll('.top-header-item')
+
+            // let html2 = ``
+
+            // html2 += `<div class="top-header-item-2">和利时DCS 🔽</div>`
+
+            // topHeaderItems.forEach(_item=>{
+            //     _item.addEventListener('click',(e)=>{
+
+            //     })
+            // })
+        }
+    </script>
+
+    <script>
+
+        initMenu1()
+
+
+        /**@type {}*/
+        
+
+        // ./和利时_主控制器单元1.drawio (1).html
+        document.getElementById('top-header-item1').addEventListener('click', (e) => {
+            iframe1.src = './和利时_主控制器单元1.drawio.html'
+        })
+
+    </script>
+
+</body>
+
 </html>
