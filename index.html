@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <script>
+
+        var ACTIVE_TOP_HEADER = null
+
+    </script>
+
     <style>
         * {
             margin: 0px;
@@ -15,7 +21,7 @@
 
     <style>
         .top-header {
-            height: 30px;
+            /* height: 30px; */
             /* background: rgb(4, 119, 193); */
             background: linear-gradient(90deg, rgb(53, 109, 231) 23%, rgb(76, 124, 230) 42%, rgb(62, 159, 223) 62%, rgb(159, 229, 231) 100%);
             box-shadow: 0 5px 10px -5px rgb(68, 66, 66);
@@ -37,11 +43,18 @@
             background: transparent;
             margin-left: 10px;
             padding: 4px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
 
+        .top-header-item.active {
+            /* border-radius: 10px; */
+            background-color: rgb(99, 150, 227);
+            color: black;
         }
 
         .top-header-item:hover {
-            background-color: rgb(175, 204, 204);
+            background-color: rgb(183, 204, 236);
             color: black;
         }
 
@@ -49,8 +62,16 @@
 
         .children-header {
             height: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             border-bottom: 1px solid black;
             display: flex;
+        }
+
+        .children-header-item1{
+            margin-right: 10px;
+            cursor: pointer;
+            user-select: none;
         }
 
         /* 
@@ -176,9 +197,19 @@
                 let _chil = item.children
 
                 div1.addEventListener('click', (_e) => {
+
+                    if(ACTIVE_TOP_HEADER) {
+                        ACTIVE_TOP_HEADER.classList.remove('active')
+                    }
+
+                    ACTIVE_TOP_HEADER = div1
+                    div1.classList.add('active')
+
+
                     div3.innerHTML = ''
                     _chil.forEach(_ii => {
                         let div2 = document.createElement('div')
+                        div2.className = 'children-header-item1'
                         div2.innerHTML = _ii.title
                         // div1.appendChild(div2)
                         div3.appendChild(div2)
