@@ -16,7 +16,7 @@ const MENUS_1 = [
             {
                 icon: ``,
                 title: 'MES上下游',
-                src1: './MES上下游1.drawio.html'
+                src1: '/drawio/MES上下游1.drawio.html'
             },
             {
                 icon: ``,
