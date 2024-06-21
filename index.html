@@ -25,17 +25,17 @@
     
                         <div class="login__box">
                             <i class='bx bx-user login__icon'></i>
-                            <input type="text" placeholder="用户名" class="login__input">
+                            <input type="text" placeholder="用户名" id="username1" class="login__input">
                         </div>
     
                         <div class="login__box">
                             <i class='bx bx-lock-alt login__icon'></i>
-                            <input type="password" placeholder="密码" class="login__input">
+                            <input type="password" placeholder="密码" id="pwd11" class="login__input">
                         </div>
 
                         <!-- <a href="#" class="login__forgot">Forgot password?</a> -->
 
-                        <a href="#" class="login__button">登 录</a>
+                        <a href="#" id="loginb1" class="login__button">登 录</a>
 
                         <!-- <div>
                             <span class="login__account">Don't have an Account ?</span>
@@ -80,5 +80,30 @@
 
         <!--===== MAIN JS =====-->
         <script src="assets/js/main.js"></script>
+
+        <script>
+            let username1 = document.getElementById('username1')
+            let pwd11 = document.getElementById('pwd11')
+            let loginb1 = document.getElementById('loginb1')
+
+            loginb1.addEventListener('click',(e)=>{
+                let u1 = username1.value ? username1.value.trim() : username1.value
+                let p1 = pwd11.value ? pwd11.value.trim() : pwd11.value
+                
+                if(!u1 || !p1) {
+                    alert('账号或密码为空')
+                    return
+                }
+
+                if(u1 === 'lb' && p1 === 'lb') {
+                    window.location.href = '/index2.html'
+                }else {
+                    alert('账号或密码错误')
+                    return
+                }
+            })
+
+
+        </script>
     </body>
 </html>
