@@ -6,7 +6,7 @@ const MENUS_1 = [
             {
                 icon: ``,
                 title: '主控制器',
-                src1: './和利时_主控制器单元1.drawio.html'
+                src1: '/drawio/和利时_主控制器单元1.drawio.html'
             }
         ]
     }, {
@@ -21,7 +21,7 @@ const MENUS_1 = [
             {
                 icon: ``,
                 title: 'SQL相关',
-                src1: './SQL相关.drawio.html'
+                src1: '/drawio/SQL相关.drawio.html'
             }
         ]
     },
