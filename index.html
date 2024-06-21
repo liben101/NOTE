@@ -34,10 +34,10 @@
             font-weight: 500;
             cursor: pointer;
             appearance: none;
-            background:transparent;
+            background: transparent;
             margin-left: 10px;
             padding: 4px;
-            
+
         }
 
         .top-header-item:hover {
@@ -75,7 +75,7 @@
             background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAASFBMVEUAAAD////Nzc3Nzc3V1dXNzc3MzMzMzMzMzMzNzc3Ozs7j4+PMzMzMzMzMzMzPz8/MzMzNzc3Ozs7Ozs7MzMzNzc3Nzc3Nzc1mbvnCAAAAGHRSTlMAAymOBrtVs9RlPgnPltxPlWwvRJzBt+CSuXutAAAAM0lEQVR4nGMYBbgALycjiGIUZEaTEBLl4WJgEOZgZcLQwybOLsbHj800bhEBFqo7cfACACvdARau8cpxAAAAAElFTkSuQmCC') no-repeat right center; */
         }
 
-        iframe{
+        iframe {
             border: 0;
         }
     </style>
@@ -83,12 +83,50 @@
 
 <body>
 
-    <div class="top-header">
+
+    <script>
+        const MENUS_1 = [
+            {
+                icon: ``,
+                title: '和利时DCS',
+                children: [
+                    {
+                        icon: ``,
+                        title: '主控制器',
+                        src1: './和利时_主控制器单元1.drawio.html'
+                    }
+                ]
+            }, {
+                icon: ``,
+                title: 'MES相关',
+                children: [
+                    {
+                        icon: ``,
+                        title: 'MES上下游',
+                        src1: './MES上下游1.drawio.html'
+                    },
+                    {
+                        icon: ``,
+                        title: 'SQL相关',
+                        src1: './SQL相关.drawio.html'
+                    }
+                ]
+            },
+        ]
+    </script>
+
+
+    <div class="top-header" id="top-header-1">
         <!-- <select class="top-header-item">
             <option value="1"></option>
         </select> -->
-        <div class="top-header-item" id="top-header-item1">和利时DCS 主控制器</div>
-        <div class="top-header-item">和利时DCS 🔽</div>
+        <!-- <div class="top-header-item" id="top-header-item1">和利时DCS 主控制器</div> -->
+        <!-- <div class="top-header-item">和利时DCS 🔽</div> -->
+    </div>
+
+    <div class="children-header" id="children-header-1">
+        <!-- <div class="top-header-item-2" id="top-header-item1">和利时DCS 主控制器</div> -->
+        <!-- <div class="top-header-item-2">和利时DCS 🔽</div> -->
     </div>
 
     <div>
@@ -101,12 +139,58 @@
     </select> -->
     <!-- <div class="top-header"></div> -->
 
-    <script>
-        /**@type {}*/
-       var iframe1 =  document.getElementById('iframe1')
 
-// ./和利时_主控制器单元1.drawio (1).html
-        document.getElementById('top-header-item1').addEventListener('click',(e)=>{
+    <script>
+        function initMenu1() {
+            /**
+                     * 
+                     * 初始化第一层menu
+                     * 
+                     * **/
+
+            let topheader1 = document.getElementById('top-header-1')
+
+            // let menu1html = ``
+            MENUS_1.forEach(item => {
+                // menu1html += `<div class="top-header-item">${item.title} 🔽</div>`
+
+
+                let div1 = document.createElement('div')
+                div1.className = 'top-header-item'
+                div1.innerHTML = `${item.title} 🔽`
+
+                topheader1.appendChild(div1)
+
+            })
+            
+            // topheader1.innerHTML = menu1html
+
+            // -----------------------------------
+
+            let topHeaderItems = document.querySelectorAll('.top-header-item')
+
+            let html2 = ``
+
+            html2 += `<div class="top-header-item-2">和利时DCS 🔽</div>`
+
+            topHeaderItems.forEach(_item=>{
+                _item.addEventListener('click',(e)=>{
+                    
+                })
+            })
+        }
+    </script>
+
+    <script>
+
+        initMenu1()
+
+
+        /**@type {}*/
+        var iframe1 = document.getElementById('iframe1')
+
+        // ./和利时_主控制器单元1.drawio (1).html
+        document.getElementById('top-header-item1').addEventListener('click', (e) => {
             iframe1.src = './和利时_主控制器单元1.drawio.html'
         })
 
