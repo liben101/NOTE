@@ -24,5 +24,16 @@ const MENUS_1 = [
                 src1: '/drawio/SQL相关.drawio.html'
             }
         ]
+    },{
+        icon: ``,
+        title: '中控DCS',
+        children: [
+            {
+                icon: ``,
+                title: '基本',
+                src1: '/drawio/中控/组态软件基本.drawio.html'
+            },
+           
+        ]
     },
 ]
