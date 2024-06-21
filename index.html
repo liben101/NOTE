@@ -45,6 +45,14 @@
             color: black;
         }
 
+
+
+        .children-header {
+            height: 20px;
+            border-bottom: 1px solid black;
+            display: flex;
+        }
+
         /* 
         .navbar-brand{
             color: white;
@@ -159,25 +167,46 @@
                 div1.className = 'top-header-item'
                 div1.innerHTML = `${item.title} 🔽`
 
+
+                // ------------------------------------------------
+
+                let div3 = document.getElementById('children-header-1')
+
+
+                let _chil = item.children
+
+                div1.addEventListener('click', (_e) => {
+                    div3.innerHTML = ''
+                    _chil.forEach(_ii => {
+                        let div2 = document.createElement('div')
+                        div2.innerHTML = _ii.title
+                        // div1.appendChild(div2)
+                        div3.appendChild(div2)
+                    })
+                })
+
+
+
                 topheader1.appendChild(div1)
 
+
             })
-            
+
             // topheader1.innerHTML = menu1html
 
             // -----------------------------------
 
-            let topHeaderItems = document.querySelectorAll('.top-header-item')
+            // let topHeaderItems = document.querySelectorAll('.top-header-item')
 
-            let html2 = ``
+            // let html2 = ``
 
-            html2 += `<div class="top-header-item-2">和利时DCS 🔽</div>`
+            // html2 += `<div class="top-header-item-2">和利时DCS 🔽</div>`
 
-            topHeaderItems.forEach(_item=>{
-                _item.addEventListener('click',(e)=>{
-                    
-                })
-            })
+            // topHeaderItems.forEach(_item=>{
+            //     _item.addEventListener('click',(e)=>{
+
+            //     })
+            // })
         }
     </script>
 
