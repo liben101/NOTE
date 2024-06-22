@@ -32,6 +32,10 @@ const MENUS_1 = [
                 icon: ``,
                 title: '基本',
                 src1: '/drawio/中控/组态软件基本.drawio.html'
+            },{
+                icon: ``,
+                title: 'PID功能块的对比',
+                src1: '/drawio/中控/PID功能块的对比.drawio.html'
             },
            
         ]

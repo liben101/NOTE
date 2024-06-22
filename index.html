@@ -191,7 +191,7 @@
 
                 let div3 = document.getElementById('children-header-1')
 
-
+                // _chil是顶部子菜单列表
                 let _chil = item.children
 
                 div1.addEventListener('click', (_e) => {
@@ -205,13 +205,12 @@
 
 
                     div3.innerHTML = ''
-                    _chil.forEach(_ii => {
+                    _chil.forEach((_ii,_index) => {
                         let div2 = document.createElement('div')
                         div2.className = 'children-header-item1'
-                        div2.innerHTML = _ii.title
+                        div2.innerHTML = `${_index + 1}. ${_ii.title}`
 
                         div2.addEventListener('click',(ee)=>{
-                            debugger
                             iframe1.src = _ii.src1
                         })
                         // div1.appendChild(div2)
