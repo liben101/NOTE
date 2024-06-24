@@ -22,7 +22,7 @@ $(document).ready(async function() {
         // 遍历主菜单
         MENUS_1.forEach(item => {
 
-            var menu_1_item = $('<div>', {
+            const menu_1_item = $('<div>', {
                 class: 'top-header-item',
                 text: item.title
             });
@@ -46,11 +46,14 @@ $(document).ready(async function() {
 
                 menu_1.html('')
                 _chil.forEach((_value, _index) => {
-                    let menu_2_item = document.createElement('div')
-                    menu_2_item.className = 'children-header-item1'
-                    menu_2_item.innerHTML = `${_index + 1}. ${_value.title}`
 
-                    menu_2_item.addEventListener('click', (ee) => {
+
+                    const menu_2_item = $('<div>', {
+                        class: 'children-header-item1',
+                        text: `${_index + 1}. ${_value.title}`
+                    });
+
+                    menu_2_item.click((ee) => {
                         iframe1.attr('src',_value.src1)
                     })
                     menu_1.append(menu_2_item)
