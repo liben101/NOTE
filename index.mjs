@@ -57,7 +57,6 @@ $(document).ready(async function() {
                 })
             })
 
-            // topheader1.appendChild(menu_1_item)
             topheader1.append(menu_1_item)
 
         })
