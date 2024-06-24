@@ -5,7 +5,7 @@ $(document).ready(async function() {
 
     let MENUS_1 = TOP_MENUS_SCHEMA
 
-    var ACTIVE_TOP_HEADER = null
+    let ACTIVE_TOP_HEADER = null;
 
 
     const iframe1 = $('#iframe1')
