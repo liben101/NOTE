@@ -1,4 +1,4 @@
-import {prefix} from "../Settings.mjs";
+import {prefix} from "./Settings.mjs";
 
 export const TOP_MENUS_SCHEMA = [
     {

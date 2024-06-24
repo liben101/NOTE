@@ -1,5 +1,5 @@
 import {prefix} from "./Settings.mjs";
-import {TOP_MENUS_SCHEMA} from "./json/TOP_MENUS_SCHEMA.mjs";
+import {TOP_MENUS_SCHEMA} from "./TOP_MENUS_SCHEMA.mjs";
 
 $(document).ready(async function() {
 
