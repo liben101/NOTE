@@ -20,9 +20,9 @@ function initMenu1() {
     // 遍历主菜单
     MENUS_1.forEach(item => {
 
-        let div1 = document.createElement('div')
-        div1.className = 'top-header-item'
-        div1.innerHTML = `${item.title} 🔽`
+        let menu_1_item = document.createElement('div')
+        menu_1_item.className = 'top-header-item'
+        menu_1_item.innerHTML = `${item.title} 🔽`
 
 
         // ------------------------------------------------
@@ -32,14 +32,14 @@ function initMenu1() {
         // _chil是顶部子菜单列表
         let _chil = item.children
 
-        div1.addEventListener('click', (_e) => {
+        menu_1_item.addEventListener('click', (_e) => {
 
             if (ACTIVE_TOP_HEADER) {
                 ACTIVE_TOP_HEADER.classList.remove('active')
             }
 
-            ACTIVE_TOP_HEADER = div1
-            div1.classList.add('active')
+            ACTIVE_TOP_HEADER = menu_1_item
+            menu_1_item.classList.add('active')
 
 
             div3.innerHTML = ''
@@ -51,15 +51,11 @@ function initMenu1() {
                 div2.addEventListener('click', (ee) => {
                     iframe1.src = _ii.src1
                 })
-                // div1.appendChild(div2)
                 div3.appendChild(div2)
             })
         })
 
-
-
-        topheader1.appendChild(div1)
-
+        topheader1.appendChild(menu_1_item)
 
     })
 
