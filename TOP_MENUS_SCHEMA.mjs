@@ -36,6 +36,10 @@ export const TOP_MENUS_SCHEMA = [
                 "src1": `${prefix}/drawio/中控/组态软件基本.drawio.html`
             }, {
                 "icon": "",
+                "title": "主控制器",
+                "src1": `${prefix}/drawio/中控/控制器单元.drawio.html`
+            }, {
+                "icon": "",
                 "title": "PID功能块的对比",
                 "src1": `${prefix}/drawio/中控/PID功能块的对比.drawio.html`
             }
