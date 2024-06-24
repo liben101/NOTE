@@ -27,7 +27,7 @@ function initMenu1() {
 
         // ------------------------------------------------
 
-        let div3 = document.getElementById('children-header-1')
+        let menu_1 = document.getElementById('children-header-1')
 
         // _chil是顶部子菜单列表
         let _chil = item.children
@@ -42,7 +42,7 @@ function initMenu1() {
             menu_1_item.classList.add('active')
 
 
-            div3.innerHTML = ''
+            menu_1.innerHTML = ''
             _chil.forEach((_value, _index) => {
                 let menu_2_item = document.createElement('div')
                 menu_2_item.className = 'children-header-item1'
@@ -51,7 +51,7 @@ function initMenu1() {
                 menu_2_item.addEventListener('click', (ee) => {
                     iframe1.src = _value.src1
                 })
-                div3.appendChild(menu_2_item)
+                menu_1.appendChild(menu_2_item)
             })
         })
 
