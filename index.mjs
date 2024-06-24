@@ -13,7 +13,7 @@ function initMenu1() {
      * 
      * 初始化第一层menu
      * 
-     * **/
+     **/
 
     let topheader1 = document.getElementById('top-header-1')
 
