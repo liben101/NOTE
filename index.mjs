@@ -1,11 +1,9 @@
 import {prefix} from "./Settings.mjs";
+import {TOP_MENUS_SCHEMA} from "./json/TOP_MENUS_SCHEMA.mjs";
 
 $(document).ready(async function() {
 
-    let MENUS_1 = await fetch(`${prefix}/json/TOP_MENUS_SCHEMA.json`).then(res => {
-        return res.json()
-    })
-
+    let MENUS_1 = TOP_MENUS_SCHEMA
 
     var ACTIVE_TOP_HEADER = null
 
