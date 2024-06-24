@@ -10,13 +10,14 @@ var iframe1 = document.getElementById('iframe1')
 
 function initMenu1() {
     /**
-             * 
-             * 初始化第一层menu
-             * 
-             * **/
+     * 
+     * 初始化第一层menu
+     * 
+     * **/
 
     let topheader1 = document.getElementById('top-header-1')
 
+    // 遍历主菜单
     MENUS_1.forEach(item => {
 
         let div1 = document.createElement('div')
