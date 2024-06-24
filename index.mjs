@@ -43,15 +43,15 @@ function initMenu1() {
 
 
             div3.innerHTML = ''
-            _chil.forEach((_ii, _index) => {
-                let div2 = document.createElement('div')
-                div2.className = 'children-header-item1'
-                div2.innerHTML = `${_index + 1}. ${_ii.title}`
+            _chil.forEach((_value, _index) => {
+                let menu_2_item = document.createElement('div')
+                menu_2_item.className = 'children-header-item1'
+                menu_2_item.innerHTML = `${_index + 1}. ${_value.title}`
 
-                div2.addEventListener('click', (ee) => {
-                    iframe1.src = _ii.src1
+                menu_2_item.addEventListener('click', (ee) => {
+                    iframe1.src = _value.src1
                 })
-                div3.appendChild(div2)
+                div3.appendChild(menu_2_item)
             })
         })
 
