@@ -44,5 +44,25 @@ export const TOP_MENUS_SCHEMA = [
                 "src1": `${prefix}/drawio/中控/PID功能块的对比.drawio.html`
             }
         ]
+    },
+    {
+        "icon": "",
+        "title": "SQL Server",
+        "children": [{
+            "icon": "",
+            "title": "事务概念",
+            "src1": `${prefix}/drawio/SQL/SQL Server/事务概念.drawio.html`
+        },
+            {
+                "icon": "",
+                "title": "使用事务",
+                "src1": `${prefix}/drawio/SQL/SQL Server/使用事务.drawio.html`
+            },  
+            {
+                "icon": "",
+                "title": "事务的并发与隔离级别",
+                "src1": `${prefix}/drawio/SQL/SQL Server/事务的并发与隔离级别.drawio.html`
+            },  
+        ]
     }
 ]
