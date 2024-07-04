@@ -77,6 +77,10 @@ $(document).ready(async function() {
 
                     menu_2_item.click((ee) => {
                         iframe1.attr('src',_value.src1)
+
+                        $('#title1').text(_value.title)
+
+                        $('#toggle1').click()
                     })
                     menu_1.append(menu_2_item)
                 })
