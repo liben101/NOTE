@@ -32,41 +32,51 @@
     </style>
 
     <style>
+
+        body {
+            display: flex;
+        }
+
         .top-header {
             /* height: 30px; */
             /* background: rgb(4, 119, 193); */
-            background: linear-gradient(90deg, rgb(7, 52, 150) 23%, rgb(76, 124, 230) 42%, rgb(62, 159, 223) 62%, rgb(159, 229, 231) 100%);
+            /* background: linear-gradient(90deg, rgb(7, 52, 150) 23%, rgb(76, 124, 230) 42%, rgb(62, 159, 223) 62%, rgb(159, 229, 231) 100%); */
             /* background: linear-gradient(167deg, rgba(0,9,255,0.3477766106442577) 0%, rgba(9,13,121,0.6474964985994398) 24%, rgba(110,19,175,1) 67%, rgba(0,0,0,0.8015581232492998) 100%); */
 
             /* background: rgb(0, 13, 83); */
 
-            box-shadow: 0 5px 10px -5px rgb(68, 66, 66);
+            box-shadow: 0 5px 10px 0 rgb(68, 66, 66);
 
-            color: white;
+            /* color: white; */
             font-weight: 500;
             display: flex;
+            flex-direction: column;
             align-items: center;
-
             user-select: none;
+            flex: 1 1;
+            height: 100vh;
+
+            transition: all 0.5s ease;
         }
 
         .top-header-item {
+            width: 100%;
             font-size: 16px;
-            color: white;
+            /* color: white; */
             font-weight: 500;
             cursor: pointer;
             appearance: none;
             background: transparent;
-            margin-left: 10px;
-            padding: 4px;
-            margin-top: 5px;
-            margin-bottom: 5px;
+            /* margin-left: 10px; */
+            padding-bottom: 4px;
+            /* margin-top: 5px; */
+            /* margin-bottom: 5px; */
         }
 
         .top-header-item.active {
             /* border-radius: 10px; */
             background-color: rgb(99, 150, 227);
-            color: rgb(255, 255, 255);
+            /* color: rgb(255, 255, 255); */
         }
 
         .top-header-item:hover {
@@ -78,10 +88,16 @@
 
         .children-header {
             /* height: 20px; */
-            padding-top: 5px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid black;
+            /* padding-top: 5px; */
+            /* padding-bottom: 5px; */
+            /* border-bottom: 1px solid black; */
             display: flex;
+            flex-direction: column;
+            flex: 1 1;
+            height: 100vh;
+            box-shadow: 0px 0px 5px 0px rgb(68, 66, 66);
+
+            transition: all 0.5s ease;
         }
 
         .children-header-item1 {
@@ -123,6 +139,10 @@
         iframe {
             border: 0;
         }
+
+        #toggle1{
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -136,6 +156,9 @@
     </script>
 
 
+    <!-- <div class="top-header" id="top-header-1">
+    </div> -->
+
     <div class="top-header" id="top-header-1">
         <!-- <select class="top-header-item">
             <option value="1"></option>
@@ -144,13 +167,17 @@
         <!-- <div class="top-header-item">和利时DCS 🔽</div> -->
     </div>
 
+
     <div class="children-header" id="children-header-1">
-        <!-- <div class="top-header-item-2" id="top-header-item1">和利时DCS 主控制器</div> -->
-        <!-- <div class="top-header-item-2">和利时DCS 🔽</div> -->
     </div>
 
-    <div>
-        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: calc(100vh - 90px)"></iframe>
+    <div style="flex: 4 4; height: 100vh;display:flex;align-items: center;position: relative;">
+
+        <div style="width: 40px;height: 40px;position: absolute;left: 2px;top: 2px; " id="toggle1">
+            <img src="./菜单.png" alt="" srcset="" style="width: 100%;height: 100%;">
+        </div>
+
+        <iframe id="iframe1" src="" frameborder="0" style="width: 100%; height: 95%;"></iframe>
     </div>
 
     <!-- <select class="lb-select">

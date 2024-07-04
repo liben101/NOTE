@@ -1,7 +1,29 @@
 import {prefix} from "./Settings.mjs";
 import {TOP_MENUS_SCHEMA} from "./TOP_MENUS_SCHEMA.mjs";
 
+let menu_hidden = false
+
 $(document).ready(async function() {
+
+    $('#toggle1').click(function (e) {
+
+        if(menu_hidden) {
+            $('#top-header-1').css('flex','1 1')
+            $('#top-header-1').css('overflow','auto')
+
+            $('#children-header-1').css('flex','1 1')
+            $('#children-header-1').css('overflow','auto')
+            menu_hidden = false
+        }else{
+            $('#top-header-1').css('flex','0 0')
+            $('#top-header-1').css('overflow','hidden')
+
+            $('#children-header-1').css('flex','0 0')
+            $('#children-header-1').css('overflow','hidden')
+            menu_hidden = true
+        }
+        
+    })
 
     let MENUS_1 = TOP_MENUS_SCHEMA
 
