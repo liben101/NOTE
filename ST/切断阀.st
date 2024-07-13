@@ -8,8 +8,14 @@ EMCL1、EMCL2 联锁关条件
 
 操作参数 SWAM (BOOL) 阀门手自动控制选择 OFF手动 ON自动
 操作参数 MCMD (BOOL) 手动控制开关 OFF
+操作参数 ENSK (BOOL) 开反馈仿真使能 OFF
+操作参数 SIMK (BOOL) 开反馈仿真 OFF
+操作参数 ENSG (BOOL) 关反馈仿真使能 OFF
+操作参数 SIMG (BOOL) 关反馈仿真 OFF
 
 输入引脚 STT (BOOL) 启动允许
+输入引脚 ZSO (BOOL) 开反馈DI
+输入引脚 ZSC (BOOL) 关反馈DI
 输出引脚 ZSV (BOOL) 阀门驱动DO ON开 OFF关
 
 监控参数 OPN_PT (BOOL) 开驱动临时变量
@@ -84,7 +90,7 @@ IF MOS = 9 THEN
 
 	// --------------------------------------------------
 	IF (SIM = ON) THEN	(* 仿真调试 *)
-		IF 	(TMP_CMD = ON) THEN	(* 状态由DO确定 *)
+		IF 	(TMP_CMD = ON) THEN	(* 仿真下面状态由DO确定 *)
 			TMP_S := 1; (* 阀开 *)
 			STA := 1; (* 阀开 *)
 		ELSE
@@ -92,6 +98,11 @@ IF MOS = 9 THEN
 			STA := 0; (* 阀关 *)
 		END_IF;
 	ELSE
+		(* 非仿真下面阀门状态  *)
+		(* 输入引脚 ZSO (BOOL) 开反馈DI  *)
+		(* 输入引脚 ZSC (BOOL) 关反馈DI  *)
+		(* 操作参数 ENSK (BOOL) 开反馈仿真使能 OFF  *)
+		(* 输出引脚 ZSV (BOOL) 阀门驱动DO ON开 OFF关  *)
 		IF (ZSO = ON OR (ENSK AND SIMK)) AND (ZSC = OFF) AND NOT (ENSG AND SIMG) AND (ZSV = ON) THEN
 			TMP_S := 1; (* 阀开 *)
 		ELSEIF (ZSO = OFF) AND NOT (ENSK AND SIMK) AND (ZSC = ON OR (ENSG AND SIMG)) AND (ZSV = OFF) THEN
@@ -119,38 +130,44 @@ IF MOS = 9 THEN
 		END_IF;
 	END_IF;
 
+	(* 输出引脚 ZSV (BOOL) 阀门驱动DO ON开 OFF关  *)
 	IF ZSV THEN
-	 OPN_PT := ON;
-	 CLS_PT := OFF;
+		(* 监控参数 OPN_PT (BOOL) 开驱动临时变量  *)
+		OPN_PT := ON;
+		CLS_PT := OFF;
 	ELSE
-	 OPN_PT := OFF;
-	 CLS_PT := ON;
+		OPN_PT := OFF;
+		CLS_PT := ON;
 	END_IF;
 
+	(* 监控参数 STA (INT) 阀门状态（0全关；1全开；4故障）  *)
 	CASE STA OF
-	 1: OPN_T := ON;
-	 CLS_T := OFF;
-	 ALM_T := OFF;
-	 0: OPN_T := OFF;
-	 CLS_T := ON;
-	 ALM_T := OFF;
-	 4: OPN_T := OFF;
-	 CLS_T := OFF;
-	 ALM_T := ON;
+		1: 
+			OPN_T := ON;
+			CLS_T := OFF;
+			ALM_T := OFF;
+		0: 
+			OPN_T := OFF;
+			CLS_T := ON;
+			ALM_T := OFF;
+		4: 
+			OPN_T := OFF;
+			CLS_T := OFF;
+			ALM_T := ON;
 	END_CASE;
 
-	 (* 联锁投切指示 *)
+	(* 监控参数 BYPALL 联锁投切指示 *)
 	IF BYP1 OR BYP2 OR BYP3 OR BYP4 OR BYP5 OR BYP6 OR BYPK THEN
-	 BYPALL := ON;
+		BYPALL := ON;
     ELSE
-       BYPALL := OFF;
+    	BYPALL := OFF;
     END_IF;
 
-    (* 联锁条件指示 *)
+    (* 监控参数 EMCALL 联锁条件指示 *)
     IF EMCL1 OR EMCL2 OR EMCL3 OR EMCL4 OR EMCL5 OR EMCL6 OR EMOPN THEN
-	 EMCALL := ON;
+		EMCALL := ON;
     ELSE
-       EMCALL := OFF;
+		EMCALL := OFF;
     END_IF;
 
 	(* 状态解析 *)
