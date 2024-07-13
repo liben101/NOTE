@@ -26,9 +26,9 @@ EMCL1、EMCL2 联锁关条件
 
 
 // --------------------------------------------------
-操作参数 SWAM (BOOL) 阀门手自动控制选择 OFF手动 ON自动
-操作参数 PCMD (BOOL) 自动控制开关 OFF
-操作参数 MCMD (BOOL) 手动控制开关 OFF
+操作参数 SWAM (BOOL) 阀门手自动驱动控制选择 OFF手动 ON自动
+操作参数 PCMD (BOOL) 自动控制开关驱动 OFF
+操作参数 MCMD (BOOL) 手动控制开关驱动 OFF
 操作参数 ENSK (BOOL) 开反馈仿真使能 OFF
 操作参数 SIMK (BOOL) 开反馈仿真 OFF
 操作参数 ENSG (BOOL) 关反馈仿真使能 OFF
@@ -63,7 +63,7 @@ IF MOS = 9 THEN
 	// --------------------------------------------------
 	// region start 判断联锁开和联锁关
 
-	(* 1--输出命令 *)
+	(* 1--判断出输出的TMP_CMD命令，最后是ZSV *)
 	IF (EMCL1 AND BYP1) OR (EMCL2 AND BYP2) OR (EMCL3 AND BYP3) THEN 	(* 3个联锁关 *)
 		(* 监控参数 TMP_CMD 驱动临时中间变量 OFF *)
 		TMP_CMD := OFF;
@@ -93,6 +93,7 @@ IF MOS = 9 THEN
 
 	// region 仿真判断 仿真结束阀门关掉
 	IF NOT SIM THEN (* 仿真结束阀门关掉 *)
+		(* 监控参数 TEMP (BOOL) 脉冲位号 仿真结束阀门关掉的动作只执行一次 *)
 		IF TEMP THEN
 			TMP_CMD := OFF;
 			TEMP := OFF;
@@ -104,12 +105,18 @@ IF MOS = 9 THEN
 
 	(* 0关 1开 *)
 	IF NOT SIM THEN
+		(* 不仿真，输出阀门驱动就是TMP_CMD *)
 		ZSV := TMP_CMD;
 	ELSE
+		(* 仿真，输出阀门驱动固定是OFF *)
 		ZSV := OFF;
 	END_IF;
 
+	(* 操作参数 MCMD (BOOL) 手动控制开关驱动 OFF *)
+	(* 使MCMD记住开关驱动 *)
 	MCMD := TMP_CMD;
+	(* 操作参数 PCMD (BOOL) 自动控制开关驱动 OFF *)
+	(* 使PCMD记住开关驱动 *)
 	PCMD := TMP_CMD;
 
 	(* 2--分析阀门当前状态 *)
@@ -117,6 +124,7 @@ IF MOS = 9 THEN
 	// --------------------------------------------------
 	IF (SIM = ON) THEN	(* 仿真调试 *)
 		IF 	(TMP_CMD = ON) THEN	(* 仿真下面状态由DO确定 *)
+			(* 监控参数 TMP_S (INT) 阀门状态临时中间变量 *)
 			TMP_S := 1; (* 阀开 *)
 			STA := 1; (* 阀开 *)
 		ELSE
@@ -140,17 +148,21 @@ IF MOS = 9 THEN
 	// --------------------------------------------------
 
 
-		(* 延迟判断阀门状态 *)
+	(* 判断阀门状态，延迟判断是否是阀门故障 *)
+	(* 监控参数 STA (INT) 阀门状态（0全关；1全开；4故障） *)
+	(* 监控参数 TMP_S (INT) 阀门状态临时中间变量 *)
 	IF (TMP_S = STA) THEN
 		COUNT := 0;	(* 状态无变化时，计数器清零 *)
 	ELSE
 		COUNT := COUNT + 1;
+		(* 监控参数 TMP_S (INT) 阀门状态临时中间变量 *)
 		IF (TMP_S = 0) THEN
 			STA := TMP_S;
 
 		ELSEIF (TMP_S = 1) THEN
 			STA := TMP_S;
-
+		(* 组态参数 TIME_R (UINT) 系统周期 *)
+		(* 操作参数 TIME_DL (UINT) 故障判断延迟时间（单位s） *)
 		ELSEIF (COUNT >= 1000 / TIME_R * TIME_DL) THEN (* 延迟判断故障 *)
 			STA := TMP_S ;
 		END_IF;
@@ -160,6 +172,7 @@ IF MOS = 9 THEN
 	IF ZSV THEN
 		(* 监控参数 OPN_PT (BOOL) 开驱动临时变量  *)
 		OPN_PT := ON;
+		(* 监控参数 CLS_PT (BOOL) 关驱动临时变量  *)
 		CLS_PT := OFF;
 	ELSE
 		OPN_PT := OFF;
@@ -169,8 +182,11 @@ IF MOS = 9 THEN
 	(* 监控参数 STA (INT) 阀门状态（0全关；1全开；4故障）  *)
 	CASE STA OF
 		1: 
+			(* 监控参数 OPN_T (BOOL) 开到位临时变量  *)
 			OPN_T := ON;
+			(* 监控参数 CLS_T (BOOL) 关到位临时变量  *)
 			CLS_T := OFF;
+			(* 监控参数 ALM_T (BOOL) 报警临时变量  *)
 			ALM_T := OFF;
 		0: 
 			OPN_T := OFF;
