@@ -63,11 +63,11 @@ IF MOS = 9 THEN
 	// --------------------------------------------------
 	// region start 判断联锁开和联锁关
 
-	(* 1--判断出输出的TMP_CMD命令，最后是ZSV *)
+	(* 1--判断出输出的TMP_CMD命令，最后是给ZSV *)
 	IF (EMCL1 AND BYP1) OR (EMCL2 AND BYP2) OR (EMCL3 AND BYP3) THEN 	(* 3个联锁关 *)
 		(* 监控参数 TMP_CMD 驱动临时中间变量 OFF *)
 		TMP_CMD := OFF;
-	ELSEIF (EMCL4 AND BYP4) OR (EMCL5 AND BYP5)OR (EMCL6 AND BYP6) THEN 	(* 3个联锁关 *)
+	ELSEIF (EMCL4 AND BYP4) OR (EMCL5 AND BYP5) OR (EMCL6 AND BYP6) THEN 	(* 3个联锁关 *)
 		TMP_CMD := OFF;
 	ELSEIF (EMOPN = ON) AND BYPK THEN (* 联锁开 *)
 		(* 监控参数 TMP_CMD 驱动临时中间变量 打开驱动 *)
@@ -173,7 +173,13 @@ IF MOS = 9 THEN
 		END_IF;
 	END_IF;
 
+
+	// -----------------------------------------------
+	// 以下是给一些临时监控变量设值
+	// 1️⃣OPN_PT开驱动临时变量 2️⃣CLS_PT关驱动临时变量 3️⃣OPN_T开到位临时变量 4️⃣CLS_T关到位临时变量 5️⃣ALM_T报警临时变量 6️⃣BYPALL联锁投切指示 7️⃣EMCALL联锁条件指示 8️⃣FLAG质量码
+
 	(* 输出引脚 ZSV (BOOL) 阀门驱动DO ON开 OFF关  *)
+	(**这里说的开驱动，就是仅仅是单方输出阀门开信号 *)
 	IF ZSV THEN
 		(* 监控参数 OPN_PT (BOOL) 开驱动临时变量  *)
 		OPN_PT := ON;
@@ -185,6 +191,7 @@ IF MOS = 9 THEN
 	END_IF;
 
 	(* 监控参数 STA (INT) 阀门状态（0全关；1全开；4故障）  *)
+	(**这里说的开到位，就是输出阀门开信号，反馈的也是开信号，形成了回路 *)
 	CASE STA OF
 		1: 
 			(* 监控参数 OPN_T (BOOL) 开到位临时变量  *)
